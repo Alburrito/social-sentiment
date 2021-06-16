@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        Registro de usuario
+      </div>
+      <div class="card-body">
+        <form action="/users/signup" method="POST">
+          <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" value="<%= username %>">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" value="<%= email %>">          
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Contraseña">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="repeatPassword" placeholder="Confirmar contraseña">
+            <small class="form-text text-muted">Nunca compartas tu contraseña con nadie.<br> Nosotros nunca la pediremos salvo para iniciar sesión.</small>
+          </div>
+          <button class="btn btn-primary btn-block">
+            Registrarse 
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

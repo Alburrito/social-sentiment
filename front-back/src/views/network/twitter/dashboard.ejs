@@ -1,0 +1,261 @@
+<h1 class="centerHeader">Panel de Twitter</h1>
+<hr />
+
+<!-- UPPER ROW -->
+<div class="row">
+  <!-- Profile -->
+  <div class="col-4">
+    <div class="container">
+      <div class="row">
+        <!-- Profile photo -->
+        <div class="col-3">
+          <img
+            src="<%= profile_info.photo %>"
+            alt="No se pudo cargar la imagen"
+            class="profile-photo"
+          />
+        </div>
+        <!-- Profile info -->
+        <div class="col">
+          <div class="container">
+            <div class="row">
+              <strong><%= profile_info.name %></strong>
+              <% if( profile_info.verified){ %>
+              <object
+                class="custom-icon"
+                type="image/svg+xml"
+                data="/img/verified.svg"
+              ></object>
+              <% } %>
+            </div>
+            <div class="row">
+              <small>@<%= profile_info.username %></small>
+            </div>
+            <div class="row">
+              <p><%= profile_info.bio %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Followers -->
+  <div class="col">
+    <div class="container statRectangle">
+      <div class="row" style="height: 100%">
+        <div
+          class="col-4 verticalContent left-stat"
+          style="
+            background-color: #5aa9e6;
+          "
+        >
+          <object
+            class="stat-icon"
+            type="image/svg+xml"
+            data="/img/followers.svg"
+          ></object>
+        </div>
+        <div
+          class="col"
+          style="border-radius: 0 0.5em 0.5em 0; background-color: #7fc8f8; padding-top: 2em;padding-bottom: 2em;" 
+        >
+          <div class="container verticalContent" style="height: 100%">
+            <div class="row">
+              <p class="mb-0" >
+                <h4> <strong> <%= stats.followers.value %> </strong>  &nbsp;</h4><small class="verticalContent">
+                  (+<%= stats.followers.diff %>)</small
+                >
+              </p>
+            </div>
+            <div class="row" style="text-align: center; width: 100%">
+              <h6>Seguidores </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Engagement  -->
+  <div class="col">
+    <div class="container statRectangle">
+      <div class="row" style="height: 100%">
+        <div
+          class="col-4 verticalContent left-stat"
+          style="
+            background-color: #8bb174;
+          "
+        >
+          <object
+            class="stat-icon"
+            type="image/svg+xml"
+            data="/img/megaphone.svg"
+          ></object>
+        </div>
+        <div
+          class="col"
+          style="border-radius: 0 0.5em 0.5em 0; background-color: #b5ca8d; padding-top: 2em;padding-bottom: 2em;"
+        >
+        <div class="container verticalContent" style="height: 100%">
+          <div class="row">
+            <p class="mb-0" >
+              <h4> <strong> <%= stats.engagement.value %> </strong>  &nbsp;</h4><small class="verticalContent">
+                (+<%= stats.engagement.diff %>)</small
+              >
+            </p>
+          </div>
+          <div class="row" style="text-align: center; width: 100%">
+            <h6>Participación </h6>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Favourites -->
+  <div class="col">
+    <div class="container statRectangle">
+      <div class="row" style="height: 100%">
+        <div
+          class="col-4 verticalContent left-stat"
+          style="
+            background-color: #dc2f02;
+          "
+        >
+          <object
+            class="stat-icon"
+            type="image/svg+xml"
+            data="/img/heart.svg"
+          ></object>
+        </div>
+        <div
+          class="col"
+          style="border-radius: 0 0.5em 0.5em 0; background-color: #fb7079; padding-top: 2em;padding-bottom: 2em;"
+        >
+        <div class="container verticalContent" style="height: 100%">
+          <div class="row">
+            <p class="mb-0" >
+              <h4> <strong> <%= stats.favourites.value %> </strong>  &nbsp;</h4><small class="verticalContent">
+                (+<%= stats.favourites.diff %>)</small
+              >
+            </p>
+          </div>
+          <div class="row" style="text-align: center; width: 100%">
+            <h6>Favoritos </h6>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Score -->
+  <div class="col">
+    <div class="container statRectangle">
+      <div class="row" style="height: 100%">
+        <div
+          class="col-4 verticalContent left-stat"
+          style="
+            background-color: #fff44f;
+          "
+        >
+          <object
+            class="stat-icon"
+            type="image/svg+xml"
+            data="/img/trophy.svg"
+          ></object>
+        </div>
+        <div
+          class="col"
+          style="border-radius: 0 0.5em 0.5em 0; background-color: #ffee99; padding-top: 2em;padding-bottom: 2em;"
+        >
+        <div class="container verticalContent" style="height: 100%">
+          <div class="row">
+            <p class="mb-0" >
+              <h4> <strong> <%= stats.score.value %> </strong>  &nbsp;</h4><small class="verticalContent">
+                (+<%= stats.score.diff %>)</small
+              >
+            </p>
+          </div>
+          <div class="row" style="text-align: center; width: 100%">
+            <h6>Puntuación </h6>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+  <!-- LOWER ROW -->
+  <div class="row">
+    <!-- Top Tweets -->
+    <div class="col" style="max-height: 100%">
+      <h4 class="centerHeader">TOP Tweets</h4>
+      <div class="container topTweetsContainer">
+        <% for(var i=1; i<=top_tweets.tweets.length; i++) {%>
+          <div>
+            <div class="row tweet">
+              <div class="col-1 verticalContent"><%= i %></div>
+              <div class="col-9">
+                <div class="container">
+                  <div class="row" style="text-align: justify;"><%= top_tweets.tweets[i-1].text %></div>
+                  <div class="row"> <small><%= top_tweets.tweets[i-1].date %></div></small>
+                </div>
+              </div>
+              <div class="col">
+                <div class="container">
+                  <div class="row"><h6 style="width: 100%; text-align: center;">Opinión</h6></div>
+                  <div class="row"><i class="fa fa-plus" style="color: green;"></i>&nbsp;Positiva:<%= top_tweets.tweets[i-1].sentiment.pos %>%</div>
+                  <div class="row"><i class="fas fa-equals" style="color: orange;"></i>&nbsp;Neutra: <%= top_tweets.tweets[i-1].sentiment.neu %>%</div>
+                  <div class="row"><i class="fa fa-minus" style="color: red;"></i>&nbsp;Negativa: <%= top_tweets.tweets[i-1].sentiment.neg %>%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+        <% } %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="container">
+        <!-- Sentiment pies -->
+        <div class="row">
+          <!-- General sentiment -->
+          <div class="col">
+            <h4 class="centerHeader">Opinión general</h4>
+            <div id="generalPie" class="pieChart"></div>
+          </div>
+          <!-- Recent sentiment -->
+          <div class="col">
+            <h4 class="centerHeader">Opinión reciente</h4>
+            <div id="recentPie" class="pieChart"></div>
+          </div>
+        </div>
+        <hr />
+        <!-- Sentiment records -->
+        <div class="row">
+          <div class="col">
+            <h4 class="centerHeader" style="width: 100%">
+              Historial de opinión
+            </h4>
+            <div id="sentimentRecord" class="lineChart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/charts/sentiment/general_pie.js"></script>
+  <script src="/js/charts/sentiment/recent_pie.js"></script>
+  <script src="/js/charts/sentiment/record.js"></script>
+  <script src="/js/charts/dataPreparator.js"></script>
+  <script>
+    var sentimentDataStr = "<%= sentiment %>";
+    var generalData,
+      recentData,
+      sent_records = prepareSentimentData(sentimentDataStr);
+    makeGeneralPie(generalData);
+    makeRecentPie(recentData);
+    makeRecordsChart(sent_records);
+  </script>
+</div>

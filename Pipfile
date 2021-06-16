@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-caching = "*"
+tweepy = "*"
+python-decouple = "*"
+python-dotenv = "*"
+pymongo = "*"
+requests = "*"
+spacy = "*"
+sklearn = "*"
+python-telegram-bot = "*"
+nltk = "*"
+wordcloud = "*"
+xlrd = "*"
+
+[dev-packages]
+autopep8 = "*"
+pylint = "*"
+jupyter = "*"
+matplotlib = "*"
+pandas = "*"
+
+[requires]
+python_version = "3"

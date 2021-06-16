@@ -1,0 +1,2 @@
+*.pickle filter=lfs diff=lfs merge=lfs -text
+resources/models/*.pickle filter=lfs diff=lfs merge=lfs -text

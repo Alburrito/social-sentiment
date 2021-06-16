@@ -1,0 +1,83 @@
+.bindLogo {
+  width: 25%;
+  margin-top: 1em;
+}
+
+
+/* Profile */
+.profile-photo {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.custom-icon {
+  width: 4%;
+  padding: 0.5%;
+  margin-left: 2%;
+}
+
+.stat-icon {
+  width: 4em;
+}
+
+
+.statRectangle {
+  border-radius: 1em;
+  height: 100%;
+  text-align: center;
+}
+
+.verticalContent{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.left-stat {
+  border-radius: 0.5em 0 0 0.5em;
+  height: 100%;
+}
+
+.right-stat {
+  border-radius: 0 0.5em 0.5em 0;
+  height: 100%;
+}
+
+
+.topTweetsContainer {
+  margin-top: 1em;
+  border: 0.5px solid #cecece;;
+  border-radius: 0.5em;
+  width: 100%;
+  padding: 0;
+}
+
+.tweet {
+  height: 7.90em; 
+  margin: 1em;
+  padding: 0.5em;
+}
+
+/* Charts */
+.dashboardContainer {
+  max-width: 95%;
+}
+
+
+.lineChart {
+  margin-top: 1em;
+  width: 100%;
+  height: 500px;
+
+  border: 0.5px solid #cecece;;
+  border-radius: 0.5em;
+}
+
+.pieChart {
+  margin-top: 1em;
+  width: 100%;
+  height: 200px;
+
+  border: 0.5px solid #cecece;;
+  border-radius: 0.5em;
+}

@@ -1,0 +1,50 @@
+<h1 class="centerHeader">Historial de Twitter</h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <h4 class="centerHeader">Comparador de estadísticas</h4>
+    <div id="chartdivComparator" class="lineChart"></div>
+  </div>
+  <div class="col-4">
+    <div class="container">
+      <h4 class="centerHeader">Historial de puntuación</h4>
+      <div id="chartdivScore" class="lineChart"></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col"> 
+    <h4 class="centerHeader">Historial de followers</h4>
+    <div id="chartdivFoll" class="lineChart"></div>
+  </div>
+  <div class="col">
+    <h4 class="centerHeader">Historial de favoritos</h4>
+    <div id="chartdivFavs" class="lineChart"></div>
+  </div>
+  <div class="col">
+    <h4 class="centerHeader">Historial de participación</h4>
+    <div id="chartdivEng" class="lineChart"></div>
+  </div>
+</div>
+
+
+<script src="/js/charts/records/comparator.js"></script>
+<script src="/js/charts/records/followers.js"></script>
+<script src="/js/charts/records/engagement.js"></script>
+<script src="/js/charts/records/favourites.js"></script>
+<script src="/js/charts/records/score.js"></script>
+<script src="/js/charts/dataPreparator.js"></script>
+<script>
+  var records = "<%= result %>";
+  var score_records, foll_records, fav_records, eng_records, comparator_records = prepareRecordsData(records);
+
+  makeScoreChart(score_records);
+  makeFollChart(foll_records);
+  makeFavsChart(fav_records);
+  makeEngChart(eng_records);
+  makeComparatorChart(comparator_records);
+</script>
