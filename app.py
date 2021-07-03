@@ -1,5 +1,6 @@
 import logging
 from flask import Flask, jsonify, request
+from flask_caching import Cache
 import json
 
 import resources.mongo_manager as mgr
@@ -9,34 +10,35 @@ from resources.utils import FLASK_CONFIG, DateTimeEncoder
 
 DAILY_TWEETS = 30
 
+def make_cache_key(*args, **kwargs):
+    path = request.path
+    args = str(hash(frozenset(request.args.items())))
+    return (path + args).encode('utf-8')
 
 #######################################
 #                 API                 #
 #######################################
 
+CACHE = Cache(config={
+    'CACHE_TYPE': FLASK_CONFIG["CACHE_TYPE"],
+    "CACHE_DEFAULT_TIMEOUT" : FLASK_CONFIG["CACHE_DEFAULT_TIMEOUT"]
+})
 app = Flask(__name__)
+CACHE.init_app(app)
 logger = logging.getLogger(__name__)
 
 #######################
 #       ROUTES       #
 #######################
 
+from random import choice
 
 @app.route('/')
+@CACHE.cached(key_prefix=make_cache_key)
 def index():
-    logger.info('INDEX')
-    return jsonify({'campo1': 'una prueba',
-                    'campo2': 2})
+    t = [1,2,3,4,5]
+    return str(choice(t))
 
-
-@app.route('/test', methods=['GET'])
-def test():
-    logger.info('-- STARTING TEST --')
-    twitter_id = request.args["twitter_id"]
-    result = ts.get_user_last_tweets_and_info(twitter_id)
-    json_result = json.dumps(result, ensure_ascii=False, cls=DateTimeEncoder)
-    logger.info('-- TEST FINISHED --')
-    return json_result
 
 #############
 #  TWITTER  #
@@ -66,6 +68,7 @@ def get_twitter_id_from_username():
 
 
 @app.route('/twitter/profile_info', methods=['GET'])
+@CACHE.cached(key_prefix=make_cache_key)
 def get_profile_info():
     """
     Returns obj with structure:
@@ -93,6 +96,7 @@ def get_profile_info():
 
 
 @app.route('/twitter/dashboard_stats', methods=['GET'])
+@CACHE.cached(key_prefix=make_cache_key)
 def get_twitter_dashboard_stats():
     if request.args and 'twitter_id' in request.args.keys():
         twitter_id = request.args.get('twitter_id')
@@ -118,6 +122,7 @@ def get_twitter_dashboard_stats():
         
 
 @app.route('/twitter/record_stats', methods=['GET'])
+@CACHE.cached(key_prefix=make_cache_key)
 def get_twitter_records():
     if request.args and 'twitter_id' in request.args.keys():
         twitter_id = request.args.get('twitter_id')
@@ -135,6 +140,7 @@ def get_twitter_records():
 
 
 @app.route('/twitter/spain_trending_topic', methods=['GET'])
+@CACHE.cached(key_prefix=make_cache_key)
 def get_trending_topic():
     result = ts.get_spain_trending_topics()
     return json.dumps(result, ensure_ascii=False, cls=DateTimeEncoder)
@@ -221,6 +227,7 @@ def update_user(twitter_id: str) -> int:
         new_top_tweets = pystats.compare_top_tweets(top_tweets, analyzed_best_tweets_and_responses)
     else:
         new_top_tweets = analyzed_best_tweets_and_responses
+    new_top_tweets = new_top_tweets[:5]
     logger.info(f'New top_tweets calculated')
 
     engagement = pystats.calculate_engagement(last_tweets, followers)
@@ -272,7 +279,6 @@ def update_user(twitter_id: str) -> int:
     logger.info(f'Updated {twitter_id} records in DB')
 
     return 0
-
 
 
 

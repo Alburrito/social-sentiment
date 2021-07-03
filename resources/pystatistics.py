@@ -1,7 +1,6 @@
 import logging
 import pandas as pd
 
-
 from resources.utils import PYSTATS_LOGGER
 from resources.utils import SCORE_WEIGHTS, SENT_FILTER
 import resources.analyzer as analyzer
@@ -68,19 +67,19 @@ def get_twitter_dashboard_stats(current_info: dict, top_tweets: list, last_stats
         "stats" : {
             "followers" : {
                 "value":followers,
-                "diff":foll_diff
+                "diff": round(foll_diff,2)
             },
             "engagement" : {
-                "value":engagement,
-                "diff":eng_diff
+                "value": round(engagement,2),
+                "diff": round(eng_diff,2)
             },
             "favourites" : {
                 "value":favourites,
-                "diff":favs_diff
+                "diff":round(favs_diff,2)
             },
             "score" : {
-                "value":score,
-                "diff":score_diff
+                "value": round(score,2),
+                "diff":round(score_diff,2)
             }
         },
         "top_tweets" : top_tweets,

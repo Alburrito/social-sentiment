@@ -19,6 +19,8 @@ class DateTimeEncoder(json.JSONEncoder):
             return super().default(z)
 
 
+
+
 #######################################
 #                 API                 #
 #######################################
@@ -27,6 +29,8 @@ FLASK_CONFIG = {
     "DEBUG": bool(os.getenv('API_DEBUG')),
     "HOST": str(os.getenv('API_HOST')),
     "PORT": str(os.getenv('API_PORT')),
+    "CACHE_TYPE": "SimpleCache",
+    "CACHE_DEFAULT_TIMEOUT": 120
 }
 
 
