@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 class IndexController {
 
     public index (req: Request, res: Response) {
-        res.render("index", { layout: "../views/layouts/indexLayout", title: 'Una plataforma de la hostia', errors: []});
+        res.render("index", { layout: "../views/layouts/indexLayout", title: 'Social Sentiment', errors: []});
     }
 
     public about (req: Request, res: Response) {
